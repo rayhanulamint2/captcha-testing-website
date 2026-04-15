@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - CAPTCHA Research</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/how-it-works.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🔬 CAPTCHA Research</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="how-it-works.html" class="nav-link active">How It Works</a></li>
+                <li><a href="testing.html" class="nav-link nav-cta">Start Testing</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>How It Works</h1>
+            <p class="page-header-sub">A step-by-step guide to the testing process and each CAPTCHA type.</p>
+        </div>
+    </section>
+
+    <!-- PROCESS STEPS -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Testing Process</h2>
+            <div class="process-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <h3>Enter Your Participant ID</h3>
+                        <p>Go to the <a href="testing.html">Testing Hub</a> and enter the participant ID you were provided. This ID is used only to link your test sessions together — no personal information is collected.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h3>Choose a CAPTCHA to Test</h3>
+                        <p>Select any of the five CAPTCHA types to test. You can complete them in any order you prefer. A progress tracker shows which ones you've completed.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h3>Complete the Challenge</h3>
+                        <p>Each CAPTCHA presents a different type of challenge. Follow the on-screen instructions and complete the verification. Your interactions are automatically recorded.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <h3>Return and Test More</h3>
+                        <p>After completing one CAPTCHA, return to the Testing Hub and try another. We encourage you to complete all five for the most useful data.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content">
+                        <h3>Done!</h3>
+                        <p>Once you've tested all five CAPTCHAs, you're done! Your anonymous data will be included in our research analysis. Thank you for contributing!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPTCHA DETAILS -->
+    <section class="section captcha-details-section">
+        <div class="container">
+            <h2 class="section-title">CAPTCHA Types Explained</h2>
+
+            <!-- DRAW -->
+            <div class="captcha-detail-card">
+                <div class="detail-header draw-header">
+                    <span class="detail-icon">✏️</span>
+                    <div>
+                        <h3>DrawCAPTCHA <span class="detail-badge novel">Novel</span></h3>
+                        <p>Behavioral path-tracing verification</p>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-text">
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>A guided path is displayed between a green start dot and a red end dot</li>
+                            <li>A brief animation shows you the path to trace</li>
+                            <li>Using your mouse or finger, draw along the dashed guide path</li>
+                            <li>Click "Verify" to submit your drawing</li>
+                            <li>Both path accuracy AND behavioral patterns are analyzed</li>
+                        </ol>
+                        <h4>What we measure:</h4>
+                        <ul>
+                            <li>Path accuracy (average distance from guide)</li>
+                            <li>Drawing speed and timing patterns</li>
+                            <li>Hand tremor (jitter) — a human indicator</li>
+                            <li>16 behavioral metrics for bot detection</li>
+                        </ul>
+                        <h4>Difficulty levels:</h4>
+                        <p>Paths range from simple (zigzag, arc) to complex (spiral, infinity, interference). Each has an easy, medium, or hard difficulty rating.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMAGE -->
+            <div class="captcha-detail-card">
+                <div class="detail-header image-header">
+                    <span class="detail-icon">🖼️</span>
+                    <div>
+                        <h3>Image CAPTCHA <span class="detail-badge traditional">Traditional</span></h3>
+                        <p>Visual object recognition grid</p>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-text">
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>A 3×3 grid of images is displayed</li>
+                            <li>You are asked to select all images matching a category (e.g., "Select all images with traffic lights")</li>
+                            <li>Click on matching images to select/deselect them</li>
+                            <li>Click "Verify" to submit your selections</li>
+                        </ol>
+                        <h4>What we measure:</h4>
+                        <ul>
+                            <li>Selection accuracy</li>
+                            <li>Time to complete</li>
+                            <li>Number of incorrect selections</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUDIO -->
+            <div class="captcha-detail-card">
+                <div class="detail-header audio-header">
+                    <span class="detail-icon">🔊</span>
+                    <div>
+                        <h3>Audio CAPTCHA <span class="detail-badge traditional">Traditional</span></h3>
+                        <p>Spoken word recognition under noise</p>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-text">
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>Click the play button to hear an audio clip</li>
+                            <li>Listen carefully — spoken words are mixed with background noise</li>
+                            <li>Type the words you heard into the text field</li>
+                            <li>Click "Verify" to check your answer</li>
+                            <li>You can replay the audio if needed</li>
+                        </ol>
+                        <h4>What we measure:</h4>
+                        <ul>
+                            <li>Transcription accuracy</li>
+                            <li>Number of replays</li>
+                            <li>Time to complete</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEXT -->
+            <div class="captcha-detail-card">
+                <div class="detail-header text-header">
+                    <span class="detail-icon">🔤</span>
+                    <div>
+                        <h3>Text CAPTCHA <span class="detail-badge traditional">Traditional</span></h3>
+                        <p>Distorted text recognition</p>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-text">
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>A canvas displays distorted, warped text with noise</li>
+                            <li>Read the characters despite visual distortion</li>
+                            <li>Type what you see into the input field</li>
+                            <li>Click "Verify" to check (case-insensitive)</li>
+                            <li>Click "New" to get a different text if it's too hard to read</li>
+                        </ol>
+                        <h4>What we measure:</h4>
+                        <ul>
+                            <li>Character-level accuracy</li>
+                            <li>Solve time</li>
+                            <li>Number of refreshes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAME -->
+            <div class="captcha-detail-card">
+                <div class="detail-header game-header">
+                    <span class="detail-icon">🎮</span>
+                    <div>
+                        <h3>Game CAPTCHA <span class="detail-badge experimental">Experimental</span></h3>
+                        <p>Interactive puzzle challenge — the hardest test</p>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-text">
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>A jigsaw-style puzzle is presented with scrambled pieces</li>
+                            <li>Drag pieces to their correct positions on the board</li>
+                            <li>Some pieces may need to be rotated (click to rotate)</li>
+                            <li>Complete the puzzle within the time limit</li>
+                            <li>This is intentionally the most challenging CAPTCHA</li>
+                        </ol>
+                        <h4>What we measure:</h4>
+                        <ul>
+                            <li>Completion time</li>
+                            <li>Number of moves</li>
+                            <li>Accuracy of placements</li>
+                            <li>Spatial reasoning performance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DATA INFO -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">What Data We Collect</h2>
+            <div class="data-info-grid">
+                <div class="data-info-item collected">
+                    <h4>✅ We DO Collect</h4>
+                    <ul>
+                        <li>Participant ID (anonymous)</li>
+                        <li>Session ID (random)</li>
+                        <li>CAPTCHA solve time</li>
+                        <li>Accuracy / pass/fail result</li>
+                        <li>Mouse/touch movement data</li>
+                        <li>Browser type and OS</li>
+                        <li>Screen resolution</li>
+                        <li>Number of attempts</li>
+                        <li>Behavioral metrics (for DrawCAPTCHA)</li>
+                    </ul>
+                </div>
+                <div class="data-info-item not-collected">
+                    <h4>❌ We DO NOT Collect</h4>
+                    <ul>
+                        <li>Your name or email</li>
+                        <li>IP address</li>
+                        <li>Location data</li>
+                        <li>Cookies or tracking pixels</li>
+                        <li>Any personal identifying information</li>
+                        <li>Browsing history</li>
+                        <li>Data from other tabs/windows</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Ready to Start?</h2>
+                <p>Head to the Testing Hub, enter your ID, and begin testing CAPTCHAs.</p>
+                <a href="testing.html" class="btn btn-primary btn-large">🧪 Go to Testing Hub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>🔬 CAPTCHA Research</h4>
+                <p>A comparative study of CAPTCHA usability and security.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="testing.html">Testing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Test CAPTCHAs</h4>
+                <ul>
+                    <li><a href="test/draw.html">DrawCAPTCHA</a></li>
+                    <li><a href="test/image.html">Image CAPTCHA</a></li>
+                    <li><a href="test/audio.html">Audio CAPTCHA</a></li>
+                    <li><a href="test/text.html">Text CAPTCHA</a></li>
+                    <li><a href="test/game.html">Game CAPTCHA</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Consent Form</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CAPTCHA Research Project. All data collected anonymously.</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+</body>
+</html>

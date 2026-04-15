@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text CAPTCHA Test - CAPTCHA Research</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/captcha-common.css">
+    <link rel="stylesheet" href="../css/captcha-text.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">🔬 CAPTCHA Research</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../how-it-works.html" class="nav-link">How It Works</a></li>
+                <li><a href="../testing.html" class="nav-link nav-cta">Testing Hub</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="test-page-header">
+        <div class="container">
+            <a href="../testing.html" class="back-link">← Back to Testing Hub</a>
+            <h1>🔤 Text CAPTCHA Test</h1>
+            <p>Read the distorted text and type what you see.</p>
+            <div class="participant-banner" id="participantBanner">
+                Participant: <strong id="participantDisplay">Not set</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container captcha-test-container">
+            <div class="captcha-box" id="captchaBox">
+                <div class="captcha-box-header">
+                    <span>🔤 Text Verification</span>
+                </div>
+                <div class="captcha-box-body">
+                    <p class="captcha-instruction">Type the characters you see in the image below.</p>
+
+                    <div class="text-captcha-canvas-wrapper">
+                        <canvas id="textCaptchaCanvas" width="280" height="80"></canvas>
+                    </div>
+
+                    <div class="text-input-area">
+                        <input type="text" id="textInput" placeholder="Type the text above..." class="text-captcha-input" autocomplete="off" spellcheck="false">
+                    </div>
+
+                    <div class="captcha-button-row">
+                        <button class="cbtn cbtn-reset" id="btnRefreshText" onclick="generateNewText()">🔄 New Text</button>
+                        <button class="cbtn cbtn-submit" id="btnVerifyText" onclick="verifyText()" disabled>Verify</button>
+                    </div>
+
+                    <div class="captcha-status hidden" id="captchaStatus">
+                        <span id="statusIcon"></span>
+                        <span id="statusText"></span>
+                    </div>
+                    <p class="hint-text" id="hintText">Case-insensitive</p>
+                    <p class="attempts-text" id="attemptsText"></p>
+                    <p class="log-indicator" id="logIndicator"></p>
+                </div>
+            </div>
+
+            <div class="captcha-complete-box" id="completeBox" style="display:none;">
+                <h3>✅ Text CAPTCHA Verified!</h3>
+                <p>Your Text CAPTCHA test data has been recorded successfully.</p>
+                <a href="../testing.html" class="btn btn-primary">← Back to Testing Hub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col"><h4>🔬 CAPTCHA Research</h4><p>A comparative study of CAPTCHA usability and security.</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="../index.html">Home</a></li><li><a href="../testing.html">Testing Hub</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+            <div class="footer-col"><h4>Other CAPTCHAs</h4><ul><li><a href="draw.html">Draw</a></li><li><a href="image.html">Image</a></li><li><a href="audio.html">Audio</a></li><li><a href="game.html">Game</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 CAPTCHA Research Project.</p></div>
+    </footer>
+
+    <script src="../js/global.js"></script>
+    <script src="../js/session.js"></script>
+    <script src="../js/browser-detect.js"></script>
+    <script src="../js/logger.js"></script>
+    <script src="../js/captcha-text.js"></script>
+</body>
+</html>

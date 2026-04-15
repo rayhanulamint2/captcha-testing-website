@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA Research - Home</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🔬 CAPTCHA Research</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="how-it-works.html" class="nav-link">How It Works</a></li>
+                <li><a href="testing.html" class="nav-link nav-cta">Start Testing</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Evaluating CAPTCHA Systems for <span class="highlight">Usability &amp; Security</span></h1>
+            <p class="hero-subtitle">
+                A comparative research study analyzing five different CAPTCHA types — 
+                from traditional text and image challenges to our novel DrawCAPTCHA approach. 
+                Help us understand which CAPTCHA best balances human usability with bot prevention.
+            </p>
+            <div class="hero-buttons">
+                <a href="testing.html" class="btn btn-primary">🧪 Participate in Testing</a>
+                <a href="about.html" class="btn btn-secondary">📖 Learn About the Research</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">CAPTCHA Types</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">16</span>
+                    <span class="stat-label">Security Checks</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25</span>
+                    <span class="stat-label">Draw Paths</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPTCHA TYPES OVERVIEW -->
+    <section class="section captcha-overview">
+        <div class="container">
+            <h2 class="section-title">Five CAPTCHA Types Under Study</h2>
+            <p class="section-subtitle">Each CAPTCHA type is tested for solve time, accuracy, user satisfaction, and bot resistance.</p>
+            
+            <div class="captcha-grid">
+                <div class="captcha-card">
+                    <div class="card-icon">✏️</div>
+                    <h3>DrawCAPTCHA</h3>
+                    <span class="card-badge novel">Novel</span>
+                    <p>Our custom CAPTCHA — trace a guided path on a canvas. Uses 16 behavioral anti-bot checks including jitter analysis, velocity variance, and timing patterns.</p>
+                    <ul class="card-features">
+                        <li>Canvas-based path tracing</li>
+                        <li>25 unique path shapes</li>
+                        <li>Behavioral biometrics</li>
+                    </ul>
+                </div>
+                <div class="captcha-card">
+                    <div class="card-icon">🖼️</div>
+                    <h3>Image CAPTCHA</h3>
+                    <span class="card-badge traditional">Traditional</span>
+                    <p>The familiar "select all images with..." grid challenge, similar to Google reCAPTCHA v2. Users identify objects in a grid of images.</p>
+                    <ul class="card-features">
+                        <li>3×3 image grid selection</li>
+                        <li>Object recognition task</li>
+                        <li>Multiple categories</li>
+                    </ul>
+                </div>
+                <div class="captcha-card">
+                    <div class="card-icon">🔊</div>
+                    <h3>Audio CAPTCHA</h3>
+                    <span class="card-badge traditional">Traditional</span>
+                    <p>Listen to spoken words with background noise and type what you hear. Tests auditory processing under distortion.</p>
+                    <ul class="card-features">
+                        <li>Spoken word recognition</li>
+                        <li>Background noise layers</li>
+                        <li>Replay functionality</li>
+                    </ul>
+                </div>
+                <div class="captcha-card">
+                    <div class="card-icon">🔤</div>
+                    <h3>Text CAPTCHA</h3>
+                    <span class="card-badge traditional">Traditional</span>
+                    <p>Classic distorted text that users must read and type. Includes warping, noise lines, and color distortion on a canvas.</p>
+                    <ul class="card-features">
+                        <li>Distorted text rendering</li>
+                        <li>Noise &amp; line overlays</li>
+                        <li>Case-insensitive matching</li>
+                    </ul>
+                </div>
+                <div class="captcha-card">
+                    <div class="card-icon">🎮</div>
+                    <h3>Game CAPTCHA</h3>
+                    <span class="card-badge experimental">Experimental</span>
+                    <p>An interactive puzzle challenge — rotate and place puzzle pieces correctly. The hardest CAPTCHA in our study, testing spatial reasoning.</p>
+                    <ul class="card-features">
+                        <li>Drag-and-drop puzzle</li>
+                        <li>Rotation mechanics</li>
+                        <li>Spatial reasoning test</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY THIS RESEARCH -->
+    <section class="section why-section">
+        <div class="container">
+            <h2 class="section-title">Why This Research Matters</h2>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-icon">🤖</div>
+                    <h3>Bot Evolution</h3>
+                    <p>Automated bots are increasingly sophisticated. AI can now solve traditional CAPTCHAs with high accuracy, demanding new approaches.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">♿</div>
+                    <h3>Accessibility Gap</h3>
+                    <p>Many CAPTCHAs exclude users with disabilities. Our study measures accessibility across visual, auditory, and motor dimensions.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">⏱️</div>
+                    <h3>User Frustration</h3>
+                    <p>CAPTCHAs that are too hard reduce conversion rates. We measure solve time, error rates, and subjective satisfaction.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🔬</div>
+                    <h3>Empirical Data</h3>
+                    <p>Instead of theoretical comparisons, we collect real interaction data from participants to draw evidence-based conclusions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Ready to Contribute?</h2>
+                <p>Your participation takes about 10–15 minutes and directly contributes to improving web security for everyone.</p>
+                <a href="testing.html" class="btn btn-primary btn-large">🧪 Start Testing Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>🔬 CAPTCHA Research</h4>
+                <p>A comparative study of CAPTCHA usability and security. Part of ongoing research in human-computer interaction and web security.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="testing.html">Testing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Test CAPTCHAs</h4>
+                <ul>
+                    <li><a href="test/draw.html">DrawCAPTCHA</a></li>
+                    <li><a href="test/image.html">Image CAPTCHA</a></li>
+                    <li><a href="test/audio.html">Audio CAPTCHA</a></li>
+                    <li><a href="test/text.html">Text CAPTCHA</a></li>
+                    <li><a href="test/game.html">Game CAPTCHA</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Consent Form</a></li>
+                    <li><a href="#">Data Usage</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CAPTCHA Research Project. All data collected anonymously for research purposes only.</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+</body>
+</html>

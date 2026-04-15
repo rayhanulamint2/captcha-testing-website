@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Hub - CAPTCHA Research</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/testing-hub.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🔬 CAPTCHA Research</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="how-it-works.html" class="nav-link">How It Works</a></li>
+                <li><a href="testing.html" class="nav-link active nav-cta">Start Testing</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>🧪 Testing Hub</h1>
+            <p class="page-header-sub">Enter your participant ID, then choose any CAPTCHA to test. Complete them in any order.</p>
+        </div>
+    </section>
+
+    <!-- ID ENTRY -->
+    <section class="section">
+        <div class="container">
+            <div class="id-entry-card" id="idEntryCard">
+                <h2>Step 1: Enter Your Participant ID</h2>
+                <p>Enter the ID you were given. This links your tests together anonymously.</p>
+                <div class="id-form-row">
+                    <input type="text" id="participantIdInput" placeholder="e.g. U-AB12CD34" class="id-input">
+                    <button class="btn btn-primary" id="idSaveBtn" onclick="saveParticipantId()">Save ID</button>
+                </div>
+                <p class="id-hint" id="idHint">ID must be at least 3 characters</p>
+            </div>
+
+            <div class="id-saved-banner" id="idSavedBanner" style="display:none;">
+                <span>✅ Participant ID: <strong id="savedIdDisplay"></strong></span>
+                <button class="btn-small" onclick="changeId()">Change</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPTCHA SELECTION -->
+    <section class="section" id="captchaSelectionSection" style="display:none;">
+        <div class="container">
+            <h2 class="section-title">Step 2: Choose a CAPTCHA to Test</h2>
+            <p class="section-subtitle">Click any card below to start testing that CAPTCHA type. Your progress is tracked.</p>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+                </div>
+                <span class="progress-text" id="progressText">0 / 5 Completed</span>
+            </div>
+
+            <div class="test-cards-grid">
+                <!-- DRAW -->
+                <div class="test-card" id="card-draw" onclick="goToTest('draw')">
+                    <div class="test-card-status" id="status-draw">Not Started</div>
+                    <div class="test-card-icon">✏️</div>
+                    <h3>DrawCAPTCHA</h3>
+                    <p>Trace a guided path on a canvas. Our novel behavioral CAPTCHA.</p>
+                    <span class="test-card-badge novel">Novel</span>
+                    <span class="test-card-difficulty">Varies</span>
+                </div>
+
+                <!-- IMAGE -->
+                <div class="test-card" id="card-image" onclick="goToTest('image')">
+                    <div class="test-card-status" id="status-image">Not Started</div>
+                    <div class="test-card-icon">🖼️</div>
+                    <h3>Image CAPTCHA</h3>
+                    <p>Select all images matching a category from a 3×3 grid.</p>
+                    <span class="test-card-badge traditional">Traditional</span>
+                    <span class="test-card-difficulty">Medium</span>
+                </div>
+
+                <!-- AUDIO -->
+                <div class="test-card" id="card-audio" onclick="goToTest('audio')">
+                    <div class="test-card-status" id="status-audio">Not Started</div>
+                    <div class="test-card-icon">🔊</div>
+                    <h3>Audio CAPTCHA</h3>
+                    <p>Listen to spoken words with background noise and type them.</p>
+                    <span class="test-card-badge traditional">Traditional</span>
+                    <span class="test-card-difficulty">Medium</span>
+                </div>
+
+                <!-- TEXT -->
+                <div class="test-card" id="card-text" onclick="goToTest('text')">
+                    <div class="test-card-status" id="status-text">Not Started</div>
+                    <div class="test-card-icon">🔤</div>
+                    <h3>Text CAPTCHA</h3>
+                    <p>Read distorted, warped text and type what you see.</p>
+                    <span class="test-card-badge traditional">Traditional</span>
+                    <span class="test-card-difficulty">Medium</span>
+                </div>
+
+                <!-- GAME -->
+                <div class="test-card" id="card-game" onclick="goToTest('game')">
+                    <div class="test-card-status" id="status-game">Not Started</div>
+                    <div class="test-card-icon">🎮</div>
+                    <h3>Game CAPTCHA</h3>
+                    <p>Solve an interactive puzzle. The toughest challenge in this study.</p>
+                    <span class="test-card-badge experimental">Experimental</span>
+                    <span class="test-card-difficulty">Hard</span>
+                </div>
+            </div>
+
+            <!-- ALL COMPLETE -->
+            <div class="all-complete-box" id="allCompleteBox" style="display:none;">
+                <h2>🎉 All CAPTCHAs Completed!</h2>
+                <p>Thank you for testing all five CAPTCHA types. Your anonymous data has been recorded and will contribute to our research.</p>
+                <p>You can re-test any CAPTCHA or <a href="contact.html">send us feedback</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>🔬 CAPTCHA Research</h4>
+                <p>A comparative study of CAPTCHA usability and security.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="testing.html">Testing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Test CAPTCHAs</h4>
+                <ul>
+                    <li><a href="test/draw.html">DrawCAPTCHA</a></li>
+                    <li><a href="test/image.html">Image CAPTCHA</a></li>
+                    <li><a href="test/audio.html">Audio CAPTCHA</a></li>
+                    <li><a href="test/text.html">Text CAPTCHA</a></li>
+                    <li><a href="test/game.html">Game CAPTCHA</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Consent Form</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CAPTCHA Research Project. All data collected anonymously.</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/testing-hub.js"></script>
+</body>
+</html>

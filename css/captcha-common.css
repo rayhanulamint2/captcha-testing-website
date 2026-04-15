@@ -1,0 +1,276 @@
+/* SHARED CAPTCHA PAGE STYLES */
+.test-page-header {
+    background: linear-gradient(135deg, #4285f4, #356bc4);
+    color: #fff;
+    padding: 30px 20px 25px;
+}
+
+.test-page-header h1 {
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+}
+
+.test-page-header p {
+    font-size: 0.92rem;
+    opacity: 0.9;
+}
+
+.back-link {
+    display: inline-block;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.participant-banner {
+    margin-top: 10px;
+    background: rgba(255,255,255,0.15);
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+}
+
+/* CAPTCHA CONTAINER */
+.captcha-test-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* CAPTCHA BOX */
+.captcha-box {
+    background: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.captcha-box-header {
+    background: #4285f4;
+    color: #fff;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.captcha-box-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.captcha-instruction {
+    font-size: 0.88rem;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+/* BUTTONS */
+.captcha-button-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.cbtn {
+    flex: 1;
+    padding: 9px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.cbtn:active {
+    transform: scale(0.97);
+}
+
+.cbtn-submit {
+    background: #4285f4;
+    color: #fff;
+    border-color: #3367d6;
+}
+
+.cbtn-submit:hover:not(:disabled) {
+    background: #3367d6;
+}
+
+.cbtn-submit:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.cbtn-reset {
+    background: #eee;
+    color: #333;
+    border-color: #bbb;
+}
+
+.cbtn-reset:hover {
+    background: #ddd;
+}
+
+.cbtn-new {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-color: #a5d6a7;
+}
+
+.cbtn-new:hover {
+    background: #c8e6c9;
+}
+
+/* STATUS */
+.captcha-status {
+    margin-top: 12px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: bold;
+    padding: 8px 10px;
+}
+
+.captcha-status.hidden {
+    opacity: 0;
+}
+
+.captcha-status.pass {
+    background: #d4edda;
+    border: 1px solid #28a745;
+    color: #155724;
+}
+
+.captcha-status.fail {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+    color: #721c24;
+}
+
+.captcha-status.timeout {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #856404;
+}
+
+.captcha-status.analyzing {
+    background: #e8eaf6;
+    border: 1px solid #5c6bc0;
+    color: #283593;
+}
+
+/* HINTS & META */
+.hint-text {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 8px;
+    min-height: 16px;
+}
+
+.attempts-text {
+    font-size: 0.72rem;
+    color: #aaa;
+    margin-top: 6px;
+}
+
+.log-indicator {
+    font-size: 0.68rem;
+    color: #aaa;
+    margin-top: 4px;
+}
+
+.log-indicator.sending { color: #f0ad4e; }
+.log-indicator.sent { color: #4caf50; }
+.log-indicator.failed { color: #f44336; }
+
+/* ===== COMPLETE BOX ===== */
+.captcha-complete-box {
+    background: #e8f5e9;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.captcha-complete-box h3 {
+    color: #2e7d32;
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+}
+
+.captcha-complete-box p {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+/* COMPLETE BOX — PROGRESS BAR */
+.complete-progress-bar {
+    height: 10px;
+    background: #c8e6c9;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 14px auto;
+    max-width: 300px;
+}
+
+.complete-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4caf50, #2e7d32);
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.complete-progress-text {
+    font-size: 0.85rem;
+    color: #2e7d32;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.all-done-msg {
+    font-size: 1rem;
+    color: #1b5e20;
+    font-weight: bold;
+    background: #c8e6c9;
+    padding: 10px 16px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 14px;
+}
+
+/* COMPLETE BOX — BUTTONS */
+.complete-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.complete-btn {
+    min-width: 260px;
+    text-align: center;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+    .complete-btn {
+        min-width: 200px;
+        font-size: 0.85rem;
+        padding: 10px 16px;
+    }
+}

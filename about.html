@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - CAPTCHA Research</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/about.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🔬 CAPTCHA Research</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="how-it-works.html" class="nav-link">How It Works</a></li>
+                <li><a href="testing.html" class="nav-link nav-cta">Start Testing</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About This Research</h1>
+            <p class="page-header-sub">Understanding the design, goals, and methodology behind our CAPTCHA comparison study.</p>
+        </div>
+    </section>
+
+    <!-- RESEARCH OVERVIEW -->
+    <section class="section">
+        <div class="container about-content">
+            <div class="about-block">
+                <h2>📌 Research Overview</h2>
+                <p>
+                    CAPTCHAs (Completely Automated Public Turing tests to tell Computers and Humans Apart) 
+                    are one of the most widely deployed security mechanisms on the web. However, as AI and bot 
+                    technology advance, traditional CAPTCHAs face increasing challenges in both security effectiveness 
+                    and user experience.
+                </p>
+                <p>
+                    This research project conducts a <strong>comparative evaluation of five distinct CAPTCHA systems</strong>, 
+                    measuring their performance across multiple dimensions: solve time, accuracy rate, user satisfaction, 
+                    accessibility, and resistance to automated attacks.
+                </p>
+            </div>
+
+            <div class="about-block">
+                <h2>🎯 Research Objectives</h2>
+                <div class="objectives-list">
+                    <div class="objective-item">
+                        <span class="obj-num">1</span>
+                        <div>
+                            <h4>Compare Usability Metrics</h4>
+                            <p>Measure solve time, error rate, and completion rate across all five CAPTCHA types with real users.</p>
+                        </div>
+                    </div>
+                    <div class="objective-item">
+                        <span class="obj-num">2</span>
+                        <div>
+                            <h4>Evaluate Security Strength</h4>
+                            <p>Assess each CAPTCHA's resistance to automated solving through behavioral analysis and bot simulation.</p>
+                        </div>
+                    </div>
+                    <div class="objective-item">
+                        <span class="obj-num">3</span>
+                        <div>
+                            <h4>Assess Accessibility</h4>
+                            <p>Determine how each CAPTCHA type performs for users with different abilities and device types.</p>
+                        </div>
+                    </div>
+                    <div class="objective-item">
+                        <span class="obj-num">4</span>
+                        <div>
+                            <h4>Introduce DrawCAPTCHA</h4>
+                            <p>Present and evaluate our novel behavioral CAPTCHA that uses drawing-based verification with 16 anti-bot checks.</p>
+                        </div>
+                    </div>
+                    <div class="objective-item">
+                        <span class="obj-num">5</span>
+                        <div>
+                            <h4>Provide Recommendations</h4>
+                            <p>Based on empirical data, recommend optimal CAPTCHA selection strategies for different web applications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-block">
+                <h2>🔬 Methodology</h2>
+                <p>
+                    Our study follows a <strong>within-subjects experimental design</strong> where each participant 
+                    completes all five CAPTCHA types. This allows direct comparison of CAPTCHA performance 
+                    while controlling for individual differences.
+                </p>
+                <div class="method-grid">
+                    <div class="method-item">
+                        <h4>📊 Data Collection</h4>
+                        <p>Interaction logs including timestamps, mouse movements, solve times, accuracy scores, and behavioral metrics are recorded automatically through the testing interface.</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>👥 Participants</h4>
+                        <p>We recruit participants with diverse backgrounds, technical expertise levels, age groups, and device types to ensure representative results.</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>📈 Analysis</h4>
+                        <p>Quantitative analysis of solve times, error rates, and security scores. Qualitative analysis of user feedback and behavioral patterns.</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>🔒 Ethics</h4>
+                        <p>All data is collected anonymously. Participant IDs are used only for session tracking and cannot be linked to personal identity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-block">
+                <h2>📋 The Five CAPTCHA Types</h2>
+                <table class="captcha-table">
+                    <thead>
+                        <tr>
+                            <th>CAPTCHA</th>
+                            <th>Type</th>
+                            <th>Challenge</th>
+                            <th>Primary Modality</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>✏️ DrawCAPTCHA</td>
+                            <td><span class="badge novel">Novel</span></td>
+                            <td>Trace a guided path on canvas</td>
+                            <td>Motor / Visual</td>
+                        </tr>
+                        <tr>
+                            <td>🖼️ Image CAPTCHA</td>
+                            <td><span class="badge traditional">Traditional</span></td>
+                            <td>Select images matching a category</td>
+                            <td>Visual / Cognitive</td>
+                        </tr>
+                        <tr>
+                            <td>🔊 Audio CAPTCHA</td>
+                            <td><span class="badge traditional">Traditional</span></td>
+                            <td>Type spoken words from audio</td>
+                            <td>Auditory</td>
+                        </tr>
+                        <tr>
+                            <td>🔤 Text CAPTCHA</td>
+                            <td><span class="badge traditional">Traditional</span></td>
+                            <td>Read and type distorted text</td>
+                            <td>Visual / Cognitive</td>
+                        </tr>
+                        <tr>
+                            <td>🎮 Game CAPTCHA</td>
+                            <td><span class="badge experimental">Experimental</span></td>
+                            <td>Solve interactive puzzle challenge</td>
+                            <td>Motor / Spatial</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="about-block">
+                <h2>🛡️ DrawCAPTCHA Security Engine</h2>
+                <p>Our novel DrawCAPTCHA incorporates a comprehensive behavioral analysis engine with <strong>16 distinct anti-bot checks</strong>:</p>
+                <div class="security-checks-grid">
+                    <div class="check-item">1. Honeypot detection</div>
+                    <div class="check-item">2. Time-on-page analysis</div>
+                    <div class="check-item">3. Draw duration check</div>
+                    <div class="check-item">4. Point count validation</div>
+                    <div class="check-item">5. Velocity variance</div>
+                    <div class="check-item">6. Angle variance</div>
+                    <div class="check-item">7. Jitter detection</div>
+                    <div class="check-item">8. Spacing uniformity</div>
+                    <div class="check-item">9. Acceleration uniformity</div>
+                    <div class="check-item">10. Pressure analysis</div>
+                    <div class="check-item">11. Timing patterns</div>
+                    <div class="check-item">12. Micro-pause detection</div>
+                    <div class="check-item">13. Pre-draw mouse activity</div>
+                    <div class="check-item">14. Straight-line ratio</div>
+                    <div class="check-item">15. Bézier curve detection</div>
+                    <div class="check-item">16. Corner sharpness analysis</div>
+                </div>
+            </div>
+
+            <div class="about-block">
+                <h2>📜 Informed Consent</h2>
+                <div class="consent-box">
+                    <p><strong>By participating in this study, you acknowledge that:</strong></p>
+                    <ul>
+                        <li>Your interactions with each CAPTCHA will be logged anonymously</li>
+                        <li>No personal identifying information is collected beyond your participant ID</li>
+                        <li>Data collected includes: solve times, accuracy, mouse/touch movements, and browser metadata</li>
+                        <li>Your participation is voluntary and you may stop at any time</li>
+                        <li>Data will be used solely for academic research purposes</li>
+                        <li>Results may be published in aggregate form in academic papers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-cta">
+                <a href="testing.html" class="btn btn-primary btn-large">🧪 Participate in the Study</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>🔬 CAPTCHA Research</h4>
+                <p>A comparative study of CAPTCHA usability and security.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="testing.html">Testing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Test CAPTCHAs</h4>
+                <ul>
+                    <li><a href="test/draw.html">DrawCAPTCHA</a></li>
+                    <li><a href="test/image.html">Image CAPTCHA</a></li>
+                    <li><a href="test/audio.html">Audio CAPTCHA</a></li>
+                    <li><a href="test/text.html">Text CAPTCHA</a></li>
+                    <li><a href="test/game.html">Game CAPTCHA</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Consent Form</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CAPTCHA Research Project. All data collected anonymously for research purposes only.</p>
+        </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+/* reCAPTCHA v2 STYLE */
+.recaptcha-header {
+    background: #4285f4;
+    color: #fff;
+    padding: 18px 16px;
+    text-align: left;
+}
+
+.recaptcha-task {
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+    opacity: 0.9;
+}
+
+.recaptcha-target {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.recaptcha-hint {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+/* IMAGE GRID */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 3px;
+    background: #fff;
+}
+
+.image-tile {
+    aspect-ratio: 1;
+    background: #f0f0f0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.15s;
+    border: 3px solid transparent;
+}
+
+.image-tile:hover {
+    opacity: 0.85;
+}
+
+.image-tile.selected {
+    border-color: #4285f4;
+}
+
+.image-tile.selected::after {
+    content: '✔';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 24px;
+    height: 24px;
+    background: #4285f4;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.image-tile canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* FOOTER BAR */
+.recaptcha-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
+}
+
+.recaptcha-footer-left {
+    display: flex;
+    gap: 8px;
+}
+
+.recaptcha-icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0.6;
+}
+
+.recaptcha-icon-btn:hover {
+    opacity: 1;
+}
+
+.recaptcha-footer-right {
+    display: flex;
+    gap: 8px;
+}
+
+.recaptcha-skip-btn {
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.recaptcha-skip-btn:hover {
+    background: #f0f0f0;
+}
+
+.recaptcha-verify-btn {
+    padding: 8px 20px;
+    background: #4285f4;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.recaptcha-verify-btn:hover {
+    background: #3367d6;
+}

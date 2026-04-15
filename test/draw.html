@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrawCAPTCHA Test - CAPTCHA Research</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/captcha-common.css">
+    <link rel="stylesheet" href="../css/captcha-draw.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">🔬 CAPTCHA Research</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../about.html" class="nav-link">About</a></li>
+                <li><a href="../how-it-works.html" class="nav-link">How It Works</a></li>
+                <li><a href="../testing.html" class="nav-link nav-cta">Testing Hub</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="test-page-header">
+        <div class="container">
+            <a href="../testing.html" class="back-link">← Back to Testing Hub</a>
+            <h1>✏️ DrawCAPTCHA Test</h1>
+            <p>Trace the guided path from the green dot to the red dot. Your drawing behavior is analyzed.</p>
+            <div class="participant-banner" id="participantBanner">
+                Participant: <strong id="participantDisplay">Not set</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container captcha-test-container">
+            <div class="hp-trap" aria-hidden="true">
+                <input type="text" id="honeypot" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="captcha-box" id="captchaBox">
+                <div class="captcha-box-header">
+                    <span>🛡️ Verify you are human</span>
+                </div>
+                <div class="captcha-box-body">
+                    <p class="captcha-instruction">
+                        Trace the path from the <b style="color:green;">green dot</b> to the <b style="color:red;">red dot</b>
+                    </p>
+                    <div class="path-badge" id="pathBadge">Loading...</div>
+                    <div class="canvas-container" id="canvasContainer">
+                        <canvas id="captchaCanvas" width="320" height="160"></canvas>
+                    </div>
+                    <div class="timer-bar-track" id="timerTrack">
+                        <div class="timer-bar-fill" id="timerFill"></div>
+                    </div>
+                    <div class="captcha-button-row">
+                        <button class="cbtn cbtn-reset" id="btnReset">Reset</button>
+                        <button class="cbtn cbtn-new" id="btnNew">New Path</button>
+                        <button class="cbtn cbtn-submit" id="btnSubmit" disabled>Verify</button>
+                    </div>
+                    <div class="captcha-status hidden" id="captchaStatus">
+                        <span id="statusIcon"></span>
+                        <span id="statusText"></span>
+                    </div>
+                    <p class="hint-text" id="hintText">Loading paths...</p>
+                    <p class="attempts-text" id="attemptsText"></p>
+                    <p class="log-indicator" id="logIndicator"></p>
+                </div>
+            </div>
+
+            <div class="captcha-complete-box" id="completeBox" style="display:none;">
+                <h3>✅ DrawCAPTCHA Verified!</h3>
+                <p>Your DrawCAPTCHA test data has been recorded successfully.</p>
+                <a href="../testing.html" class="btn btn-primary">← Back to Testing Hub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col"><h4>🔬 CAPTCHA Research</h4><p>A comparative study of CAPTCHA usability and security.</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="../index.html">Home</a></li><li><a href="../testing.html">Testing Hub</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+            <div class="footer-col"><h4>Other CAPTCHAs</h4><ul><li><a href="image.html">Image</a></li><li><a href="audio.html">Audio</a></li><li><a href="text.html">Text</a></li><li><a href="game.html">Game</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 CAPTCHA Research Project.</p></div>
+    </footer>
+
+    <script src="../js/global.js"></script>
+    <script src="../js/session.js"></script>
+    <script src="../js/browser-detect.js"></script>
+    <script src="../js/logger.js"></script>
+    <script src="../js/security-engine.js"></script>
+
+    <script src="../paths/registry.js"></script>
+    <script src="../paths/path-zigzag.js"></script>
+    <script src="../paths/path-wave.js"></script>
+    <script src="../paths/path-stairs.js"></script>
+    <script src="../paths/path-arc.js"></script>
+    <script src="../paths/path-scurve.js"></script>
+    <script src="../paths/path-circle.js"></script>
+    <script src="../paths/path-spiral.js"></script>
+    <script src="../paths/path-heart.js"></script>
+    <script src="../paths/path-infinity.js"></script>
+    <script src="../paths/path-lightning.js"></script>
+    <script src="../paths/path-diamond.js"></script>
+    <script src="../paths/path-mountains.js"></script>
+    <script src="../paths/path-loop.js"></script>
+    <script src="../paths/path-checkmark.js"></script>
+    <script src="../paths/path-crown.js"></script>
+    <script src="../paths/path-projectile.js"></script>
+    <script src="../paths/path-bounce.js"></script>
+    <script src="../paths/path-pendulum.js"></script>
+    <script src="../paths/path-freefall.js"></script>
+    <script src="../paths/path-orbit.js"></script>
+    <script src="../paths/path-spring.js"></script>
+    <script src="../paths/path-catenary.js"></script>
+    <script src="../paths/path-cycloid.js"></script>
+    <script src="../paths/path-interference.js"></script>
+    <script src="../paths/path-slingshot.js"></script>
+
+    <script src="../js/captcha-draw.js"></script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logger Diagnostic Test</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; background: #1a1a2e; color: #e0e0e0; }
+        h1 { color: #00d4ff; }
+        .test-card { background: #16213e; border: 1px solid #0f3460; border-radius: 10px; padding: 20px; margin: 15px 0; }
+        .test-card h3 { margin-top: 0; color: #e94560; }
+        button { background: #e94560; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; margin: 5px 0; }
+        button:hover { background: #c73652; }
+        .result { background: #0d1b2a; padding: 12px; border-radius: 6px; margin-top: 10px; font-family: monospace; font-size: 13px; white-space: pre-wrap; word-break: break-all; min-height: 30px; }
+        .pass { border-left: 4px solid #00ff88; }
+        .fail { border-left: 4px solid #ff4444; }
+        .warn { border-left: 4px solid #ffaa00; }
+        input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #0f3460; background: #0d1b2a; color: #e0e0e0; font-family: monospace; font-size: 13px; box-sizing: border-box; margin: 8px 0; }
+        .step-num { display: inline-block; background: #e94560; color: white; border-radius: 50%; width: 28px; height: 28px; text-align: center; line-height: 28px; font-weight: bold; margin-right: 8px; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Logger Diagnostic Test</h1>
+    <p>Run these tests in order to find exactly where the problem is.</p>
+
+    <!-- TEST 0: URL -->
+    <div class="test-card">
+        <h3><span class="step-num">0</span> Your Apps Script URL</h3>
+        <p>Paste your current deployed URL here:</p>
+        <input type="text" id="scriptUrl" placeholder="https://script.google.com/macros/s/.../exec">
+        <button onclick="loadUrlFromLogger()">Auto-fill from logger.js</button>
+        <div class="result" id="urlResult"></div>
+    </div>
+
+    <!-- TEST 1: Direct browser check -->
+    <div class="test-card">
+        <h3><span class="step-num">1</span> Is the URL publicly accessible?</h3>
+        <p>This opens your URL in a new tab. You should see a JSON response, NOT a Google sign-in page.</p>
+        <button onclick="test1()">Open URL in new tab</button>
+        <div class="result" id="test1Result">
+            ✅ Expected: {"status":"ok","message":"CAPTCHA logger is active. Waiting for data."}
+            ❌ If you see a Google sign-in page → your deployment is NOT set to "Anyone"
+        </div>
+    </div>
+
+    <!-- TEST 2: Fetch test (no-cors) -->
+    <div class="test-card">
+        <h3><span class="step-num">2</span> Can fetch reach the URL? (no-cors mode)</h3>
+        <p>This simulates exactly what your website does.</p>
+        <button onclick="test2()">Run Fetch Test</button>
+        <div class="result" id="test2Result">Waiting...</div>
+    </div>
+
+    <!-- TEST 3: Send actual test data -->
+    <div class="test-card">
+        <h3><span class="step-num">3</span> Send test data to sheet</h3>
+        <p>This sends a test row. Check your Google Sheet after clicking.</p>
+        <button onclick="test3()">Send Test Data</button>
+        <div class="result" id="test3Result">Waiting...</div>
+    </div>
+
+    <!-- TEST 4: Check browser-detect.js functions -->
+    <div class="test-card">
+        <h3><span class="step-num">4</span> Are getBrowser() & getOS() working?</h3>
+        <button onclick="test4()">Test Functions</button>
+        <div class="result" id="test4Result">Waiting...</div>
+    </div>
+
+    <!-- TEST 5: Full logToSheet simulation -->
+    <div class="test-card">
+        <h3><span class="step-num">5</span> Full logToSheet() simulation</h3>
+        <p>This runs the exact same code as a real CAPTCHA submission.</p>
+        <button onclick="test5()">Run Full Test</button>
+        <div class="result" id="test5Result">Waiting...</div>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div class="test-card">
+        <h3>📋 Common Failure Checklist</h3>
+        <div class="result">
+1. Apps Script deployed as "Anyone" (NOT "Anyone with Google Account")
+2. Used "New deployment" after every code change (not just Save)
+3. URL in logger.js matches the LATEST deployment URL
+4. The sheet tab is named "Sheet1" (or the script falls back to first tab)
+5. You authorized the script when prompted during deployment
+6. The script is bound to the correct Google Sheet ("all captcha data")
+        </div>
+    </div>
+
+    <script>
+        function getUrl() {
+            return document.getElementById('scriptUrl').value.trim();
+        }
+
+        function loadUrlFromLogger() {
+            // Hardcoded from the latest logger.js
+            document.getElementById('scriptUrl').value = 'https://script.google.com/macros/s/AKfycbwfeo8VlgHXIhO5tMHSXnEFbTi9n6uA7oxHdLp482jSx1uOKA3ZWjlP8Kcn2Wo_zNiNMQ/exec';
+            document.getElementById('urlResult').textContent = '✅ URL loaded.';
+        }
+
+        function test1() {
+            var url = getUrl();
+            if (!url) { alert('Paste your URL first!'); return; }
+            window.open(url, '_blank');
+            document.getElementById('test1Result').innerHTML =
+                '👆 Check the new tab.\n\n' +
+                '✅ PASS = You see JSON like {"status":"ok",...}\n' +
+                '❌ FAIL = You see a Google login page\n\n' +
+                'If FAIL → Go to Apps Script → Deploy → New deployment → \n' +
+                '   Set "Who has access" to "Anyone" (not "Anyone with Google account")';
+        }
+
+        function test2() {
+            var url = getUrl();
+            if (!url) { alert('Paste your URL first!'); return; }
+            var el = document.getElementById('test2Result');
+            el.textContent = '⏳ Sending fetch request...';
+            el.className = 'result';
+
+            var startTime = Date.now();
+            fetch(url, { method: 'GET', mode: 'no-cors' })
+                .then(function(response) {
+                    var elapsed = Date.now() - startTime;
+                    el.textContent =
+                        '✅ Fetch completed in ' + elapsed + 'ms\n' +
+                        'Response type: ' + response.type + '\n' +
+                        'Status: ' + response.status + '\n\n' +
+                        'Note: With no-cors, response is "opaque" (type: ' + response.type + ', status: 0).\n' +
+                        'This is normal — it does NOT mean it failed.\n' +
+                        'You need to check the Google Sheet to confirm data arrived.';
+                    el.className = 'result pass';
+                })
+                .catch(function(err) {
+                    el.textContent = '❌ Fetch FAILED: ' + err.message + '\n\nThis means the URL is unreachable.';
+                    el.className = 'result fail';
+                });
+        }
+
+        function test3() {
+            var url = getUrl();
+            if (!url) { alert('Paste your URL first!'); return; }
+            var el = document.getElementById('test3Result');
+            el.textContent = '⏳ Sending test data...';
+
+            var testData = {
+                timestamp: new Date().toISOString(),
+                participantId: 'TEST_USER',
+                sessionId: 'TEST_SESSION_' + Date.now(),
+                captchaType: 'test',
+                result: 'pass',
+                attemptNumber: 1,
+                totalAttempts: 1,
+                accuracy: 100,
+                solveTime: 1234,
+                browser: 'TestBrowser',
+                os: 'TestOS',
+                screenWidth: screen.width,
+                screenHeight: screen.height,
+                userAgent: navigator.userAgent
+            };
+
+            var fullUrl = url + '?data=' + encodeURIComponent(JSON.stringify(testData));
+
+            el.textContent += '\n\nFull URL length: ' + fullUrl.length + ' chars';
+            el.textContent += '\nData being sent:\n' + JSON.stringify(testData, null, 2);
+
+            // Method 1: fetch with no-cors
+            fetch(fullUrl, { method: 'GET', mode: 'no-cors' })
+                .then(function() {
+                    el.textContent += '\n\n✅ Fetch completed. Now check your Google Sheet!';
+                    el.textContent += '\nIf no row appeared → the URL requires authentication.';
+                    el.textContent += '\n\nTrying cors mode for detailed response...';
+                    // Method 2: try with cors to see actual response
+                    return fetch(fullUrl, { method: 'GET' });
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(text) {
+                    el.textContent += '\n\n📡 Server response: ' + text;
+                    if (text.indexOf('success') > -1) {
+                        el.className = 'result pass';
+                        el.textContent += '\n\n🎉 SUCCESS! Check your Google Sheet now!';
+                    } else if (text.indexOf('error') > -1) {
+                        el.className = 'result fail';
+                        el.textContent += '\n\n❌ Server returned an error. Check your Apps Script code.';
+                    }
+                })
+                .catch(function(err) {
+                    el.textContent += '\n\n⚠️ CORS blocked reading response (this is normal).\nCheck your Google Sheet manually.';
+                    el.className = 'result warn';
+                });
+        }
+
+        function test4() {
+            var el = document.getElementById('test4Result');
+            try {
+                var browser = getBrowser();
+                var os = getOS();
+                el.textContent = '✅ getBrowser() = "' + browser + '"\n✅ getOS() = "' + os + '"';
+                el.className = 'result pass';
+            } catch (err) {
+                el.textContent = '❌ ERROR: ' + err.message + '\n\nThis means browser-detect.js is not loaded or has errors.';
+                el.className = 'result fail';
+            }
+        }
+
+        function test5() {
+            var el = document.getElementById('test5Result');
+            try {
+                var url = getUrl();
+                if (!url) { alert('Paste your URL first!'); return; }
+
+                el.textContent = '⏳ Building data payload...\n';
+
+                var data = {
+                    captchaType: 'diagnostic_test',
+                    result: 'pass',
+                    attemptNumber: 1,
+                    totalAttempts: 1,
+                    accuracy: 100,
+                    solveTime: 999
+                };
+
+                // Add the same fields logToSheet adds
+                data.userId = 'DIAG_TEST';
+                data.sessionId = 'DIAG_' + Date.now();
+                data.participantId = 'DIAG_TEST';
+                data.userAgent = navigator.userAgent;
+                data.screenWidth = screen.width;
+                data.screenHeight = screen.height;
+                data.browser = typeof getBrowser === 'function' ? getBrowser() : 'UNAVAILABLE';
+                data.os = typeof getOS === 'function' ? getOS() : 'UNAVAILABLE';
+                data.timestamp = new Date().toISOString();
+
+                var jsonStr = JSON.stringify(data);
+                var fullUrl = url + '?data=' + encodeURIComponent(jsonStr);
+
+                el.textContent += 'Payload size: ' + jsonStr.length + ' bytes\n';
+                el.textContent += 'Full URL length: ' + fullUrl.length + ' chars\n';
+                el.textContent += 'Data:\n' + JSON.stringify(data, null, 2) + '\n\n';
+                el.textContent += '⏳ Sending...\n';
+
+                fetch(fullUrl, { method: 'GET', mode: 'no-cors' })
+                    .then(function() {
+                        el.textContent += '✅ Request sent. Check your Google Sheet!\n';
+                        el.className = 'result pass';
+                    })
+                    .catch(function(err) {
+                        el.textContent += '❌ Request failed: ' + err.message;
+                        el.className = 'result fail';
+                    });
+            } catch(err) {
+                el.textContent = '❌ ERROR: ' + err.message + '\n\nStack: ' + err.stack;
+                el.className = 'result fail';
+            }
+        }
+    </script>
+
+    <!-- Load browser-detect.js for test 4 -->
+    <script src="js/browser-detect.js"></script>
+</body>
+</html>

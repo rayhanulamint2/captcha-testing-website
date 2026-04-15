@@ -1,0 +1,229 @@
+.game-captcha-box {
+    max-width: 600px;
+}
+
+.game-header {
+    background: #c62828 !important;
+}
+
+.game-timer-bar {
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.game-timer-fill {
+    height: 100%;
+    width: 100%;
+    background: #4caf50;
+    border-radius: 3px;
+    transition: width 0.5s linear;
+    transform-origin: left;
+}
+
+.game-timer-fill.warning {
+    background: #ff9800;
+}
+
+.game-timer-fill.danger {
+    background: #f44336;
+}
+
+.game-timer-text {
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 12px;
+}
+
+.phase-label {
+    font-size: 0.82rem;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* PREVIEW */
+#previewCanvas {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    max-width: 100%;
+    height: auto;
+}
+
+.preview-countdown {
+    font-size: 0.85rem;
+    color: #c62828;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* PUZZLE AREA */
+.puzzle-area {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.puzzle-board-wrapper, .puzzle-tray-wrapper {
+    text-align: center;
+}
+
+.puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    gap: 2px;
+    background: #ccc;
+    border: 2px solid #888;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.puzzle-cell {
+    width: 90px;
+    height: 90px;
+    background: #f0f0f0;
+    border: 1px dashed #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: #ccc;
+}
+
+.puzzle-cell.occupied {
+    border: 1px solid #4285f4;
+    background: transparent;
+    padding: 0;
+}
+
+.puzzle-cell.drag-over {
+    background: #e3f2fd;
+    border-color: #4285f4;
+    border-style: solid;
+}
+
+.puzzle-tray {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    gap: 6px;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    min-height: 100px;
+}
+
+.puzzle-piece {
+    width: 86px;
+    height: 86px;
+    cursor: grab;
+    border: 2px solid #666;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s;
+    background: #fff;
+}
+
+.puzzle-piece:hover {
+    border-color: #4285f4;
+    box-shadow: 0 2px 8px rgba(66,133,244,0.3);
+}
+
+.puzzle-piece:active {
+    cursor: grabbing;
+}
+
+.puzzle-piece canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.puzzle-piece .rotate-hint {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 0.55rem;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.puzzle-piece.placed {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.puzzle-cell .puzzle-piece-placed {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.puzzle-cell .puzzle-piece-placed canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .puzzle-board {
+        grid-template-columns: repeat(3, 70px);
+        grid-template-rows: repeat(3, 70px);
+    }
+
+    .puzzle-cell {
+        width: 70px;
+        height: 70px;
+    }
+
+    .puzzle-tray {
+        grid-template-columns: repeat(3, 70px);
+    }
+
+    .puzzle-piece {
+        width: 66px;
+        height: 66px;
+    }
+
+    #previewCanvas {
+        width: 210px;
+        height: 210px;
+    }
+}
+
+@media (max-width: 420px) {
+    .puzzle-area {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .puzzle-board {
+        grid-template-columns: repeat(3, 60px);
+        grid-template-rows: repeat(3, 60px);
+    }
+
+    .puzzle-cell {
+        width: 60px;
+        height: 60px;
+    }
+
+    .puzzle-tray {
+        grid-template-columns: repeat(3, 60px);
+    }
+
+    .puzzle-piece {
+        width: 56px;
+        height: 56px;
+    }
+}
