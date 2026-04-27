@@ -67,10 +67,14 @@
     font-weight: bold;
 }
 
-.image-tile canvas {
+.image-tile canvas,
+.image-tile img {
     width: 100%;
     height: 100%;
     display: block;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
 }
 
 /* FOOTER BAR */
