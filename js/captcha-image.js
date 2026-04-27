@@ -1,18 +1,22 @@
 // ===================================================
-// IMAGE CAPTCHA — Full Logic
+// IMAGE CAPTCHA — Full Logic (Cloudinary hosted images)
 // All images come from ONE category folder only.
-//   Targets    = category/1.jpg, 2.jpg ...
-//   Distractors = category/similar/1.jpg, 2.jpg ...
+//   Targets     = cloudinary/.../category/1.jpg, 2.jpg ...
+//   Distractors = cloudinary/.../category/similar/1.jpg, 2.jpg ...
 // ===================================================
 (function() {
 
     // Read config
     var CFG = IMAGE_CAPTCHA_CONFIG;
     var categories = CFG.categories;
-    var basePath = CFG.basePath;
+    var cloudName = CFG.cloudName;
+    var cloudFolder = CFG.cloudFolder || 'captcha';
     var defaultExt = CFG.defaultExt || '.jpg';
     var gridSize = CFG.gridSize || 9;
 
+    // Build Cloudinary base URL
+    var cloudBase = 'https://res.cloudinary.com/' + cloudName + '/image/upload/' + cloudFolder + '/';
+    
     // State
     var currentCategory = null;
     var correctIndices = [];
@@ -35,14 +39,16 @@
 
     // ─── HELPERS ──────────────────────────────────────────
 
-    function targetPath(cat, num) {
+    /** Build Cloudinary URL for a target image */
+    function targetUrl(cat, num) {
         var ext = cat.ext || defaultExt;
-        return basePath + cat.folder + '/' + num + ext;
+        return cloudBase + cat.folder + '/' + num + ext;
     }
 
-    function similarPath(cat, num) {
+    /** Build Cloudinary URL for a "similar" confusing image */
+    function similarUrl(cat, num) {
         var ext = cat.ext || defaultExt;
-        return basePath + cat.folder + '/similar/' + num + ext;
+        return cloudBase + cat.folder + '/similar/' + num + ext;
     }
 
     function shuffle(arr) {
@@ -83,9 +89,9 @@
     function buildGrid() {
         imageGrid.innerHTML = '';
 
-        // ── 1. Pick target images from category/ ─────────
+        // ── 1. Pick target images ────────────────────────
         var minT = CFG.minTargets || 3;
-        var maxT = CFG.maxTargets || 4;
+        var maxT = CFG.maxTargets || 5;
         var targetCount = minT + Math.floor(Math.random() * (maxT - minT + 1));
         targetCount = Math.min(targetCount, currentCategory.count);
 
@@ -94,19 +100,19 @@
         var tiles = [];
         for (var i = 0; i < targetNums.length; i++) {
             tiles.push({
-                src: targetPath(currentCategory, targetNums[i]),
+                src: targetUrl(currentCategory, targetNums[i]),
                 isTarget: true
             });
         }
 
-        // ── 2. Fill ALL distractors from category/similar/ ──
+        // ── 2. Fill ALL distractors from similar/ ────────
         var distractorCount = gridSize - targetCount;
         var similarAvailable = currentCategory.similarCount || 0;
         var similarNums = pickRandom(numRange(similarAvailable), distractorCount);
 
         for (var s = 0; s < similarNums.length; s++) {
             tiles.push({
-                src: similarPath(currentCategory, similarNums[s]),
+                src: similarUrl(currentCategory, similarNums[s]),
                 isTarget: false
             });
         }
@@ -131,6 +137,7 @@
             img.src = tiles[i].src;
             img.alt = 'CAPTCHA image ' + (i + 1);
             img.draggable = false;
+            img.crossOrigin = 'anonymous';  // Cloudinary supports CORS
 
             img.onerror = (function(tileEl, index) {
                 return function() {
