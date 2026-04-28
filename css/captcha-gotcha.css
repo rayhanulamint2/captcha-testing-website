@@ -1,0 +1,272 @@
+/* =============== GOTCHA CAPTCHA — Sketch-Match Widget =============== */
+.gotcha-captcha-box {
+    max-width: 520px;
+}
+
+.gotcha-header {
+    background: #6c63ff !important;
+}
+
+/* =============== CAPTCHA WIDGET =============== */
+.captcha-widget {
+    background: #111128;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 2px solid #1e1e3a;
+    user-select: none;
+}
+
+/* --- Header --- */
+.captcha-header {
+    background: #0c0c20;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e1e3a;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.instruction-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #c0c0e0;
+}
+
+.order-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.order-icon-slot {
+    width: 42px;
+    height: 42px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+}
+
+.order-icon-slot svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.order-badge {
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #6c63ff;
+    border: 2px solid #0c0c20;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+/* --- Scene Area --- */
+.captcha-scene {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    cursor: crosshair;
+    background: #0a0a1a;
+}
+
+/* Background image layer */
+.captcha-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
+}
+
+/* Noise overlay ON TOP of the image */
+.captcha-noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Loading spinner */
+.captcha-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a1a;
+    z-index: 90;
+    color: #555;
+    font-size: 14px;
+    gap: 10px;
+}
+
+.captcha-loading .spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #333;
+    border-top-color: #6c63ff;
+    border-radius: 50%;
+    animation: gotchaSpin 0.8s linear infinite;
+}
+
+@keyframes gotchaSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- Sketch Icons on Scene --- */
+.sketch-icon {
+    position: absolute;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.15s;
+    z-index: 5;
+}
+
+.sketch-icon:hover {
+    filter: brightness(1.5);
+    transform: scale(1.08);
+}
+
+.sketch-icon.selected {
+    filter: brightness(1.6) drop-shadow(0 0 10px rgba(108, 99, 255, 0.8));
+}
+
+.sketch-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+/* --- Click Badge --- */
+.click-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #6c63ff;
+    border: 2.5px solid #fff;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    animation: gotchaBadgePop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+@keyframes gotchaBadgePop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/* --- Footer --- */
+.captcha-footer {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #0c0c20;
+    border-top: 1px solid #1e1e3a;
+}
+
+.captcha-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-confirm {
+    flex: 1;
+    background: linear-gradient(135deg, #5b5bf0, #7a7aff);
+    color: #fff;
+}
+
+.btn-confirm:hover:not(:disabled) {
+    filter: brightness(1.15);
+}
+
+.btn-confirm:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    filter: none;
+}
+
+.btn-refresh {
+    width: 50px;
+    background: #1e1e3a;
+    color: #888;
+    font-size: 20px;
+}
+
+.btn-refresh:hover {
+    background: #2e2e4a;
+    color: #fff;
+}
+
+/* --- Result Overlay --- */
+.result-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: gotchaFadeIn 0.3s ease;
+}
+
+.result-overlay.success {
+    background: rgba(16, 185, 129, 0.92);
+}
+
+.result-overlay.fail {
+    background: rgba(239, 68, 68, 0.88);
+}
+
+.result-overlay .r-icon {
+    font-size: 52px;
+    color: #fff;
+}
+
+.result-overlay .r-text {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 6px;
+    color: #fff;
+}
+
+@keyframes gotchaFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

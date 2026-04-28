@@ -50,13 +50,14 @@ function getCaptchaLabel(type) {
         image: '🖼️ Image CAPTCHA',
         audio: '🔊 Audio CAPTCHA',
         text:  '🔤 Text CAPTCHA',
-        game:  '🎮 Game CAPTCHA'
+        game:  '🎮 Game CAPTCHA',
+        gotcha: '🎯 GotCHA CAPTCHA'
     };
     return labels[type] || type;
 }
 
 function getCaptchaIcon(type) {
-    var icons = { draw: '✏️', image: '🖼️', audio: '🔊', text: '🔤', game: '🎮' };
+    var icons = { draw: '✏️', image: '🖼️', audio: '🔊', text: '🔤', game: '🎮', gotcha: '🎯' };
     return icons[type] || '🧪';
 }
 
@@ -64,7 +65,7 @@ function getCaptchaIcon(type) {
 // NEXT CAPTCHA LOGIC
 // ===================================================
 function getNextCaptcha(currentType) {
-    var types = ['draw', 'image', 'audio', 'text', 'game'];
+    var types = ['draw', 'image', 'audio', 'text', 'game', 'gotcha'];
     var currentIndex = types.indexOf(currentType);
 
     // First try types after current one
@@ -94,7 +95,7 @@ function showCompleteBox(captchaType, captchaDisplayName) {
     if (!completeBox) return;
 
     var completedCount = getCompletedCount();
-    var totalCaptchas = 5;
+    var totalCaptchas = 6;
     var next = getNextCaptcha(captchaType);
 
     var buttonsHtml = '';

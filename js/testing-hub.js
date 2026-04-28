@@ -15,7 +15,7 @@
     var progressText = document.getElementById('progressText');
     var allCompleteBox = document.getElementById('allCompleteBox');
 
-    var captchaTypes = ['draw', 'image', 'audio', 'text', 'game'];
+    var captchaTypes = ['draw', 'image', 'audio', 'text', 'game', 'gotcha'];
 
     // ===================================================
     // SAFETY CHECK — make sure session.js loaded
