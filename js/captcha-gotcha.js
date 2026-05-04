@@ -289,33 +289,35 @@
 
     // ==================== POSITIONS ====================
     function getPositions(count, size) {
-        var pad = 60; // large padding to keep icons away from corners/edges
-        var maxX = opts.canvasW - size - pad;
-        var maxY = opts.canvasH - size - pad;
-        // Clamp to avoid negative ranges on very small screens
-        if (maxX < pad) maxX = pad;
-        if (maxY < pad) maxY = pad;
+        var pad = 40;
+        var usableW = opts.canvasW - pad * 2 - size;
+        var usableH = opts.canvasH - pad * 2 - size;
+        if (usableW < 0) usableW = 0;
+        if (usableH < 0) usableH = 0;
+
+        // Divide the canvas into non-overlapping zones (columns)
+        // Each icon gets its own zone — overlap is impossible
+        var zoneW = usableW / count;
         var out = [];
-        var tries = 0;
-        var minDist = size * 1.8; // center-to-center min distance — prevents any overlap
 
-        while (out.length < count && tries < 800) {
-            var x = pad + Math.random() * (maxX - pad);
-            var y = pad + Math.random() * (maxY - pad);
-            // Check center-to-center distance (add half-size to convert corner coords to center)
-            var ok = out.every(function (p) {
-                var cx1 = p.x + size / 2, cy1 = p.y + size / 2;
-                var cx2 = x + size / 2, cy2 = y + size / 2;
-                return Math.hypot(cx1 - cx2, cy1 - cy2) > minDist;
-            });
-            if (ok) out.push({ x: x, y: y });
-            tries++;
+        for (var i = 0; i < count; i++) {
+            var zoneLeft = pad + i * zoneW;
+            var zoneRight = zoneLeft + zoneW - size;
+            if (zoneRight < zoneLeft) zoneRight = zoneLeft;
+
+            var x = zoneLeft + Math.random() * (zoneRight - zoneLeft);
+            var y = pad + Math.random() * usableH;
+            out.push({ x: Math.round(x), y: Math.round(y) });
         }
 
-        // Fallback: place in a row with guaranteed spacing
-        while (out.length < count) {
-            out.push({ x: pad + out.length * (size + size * 0.8), y: pad + 20 });
+        // Shuffle the positions so icons don't always go left-to-right in order
+        for (var j = out.length - 1; j > 0; j--) {
+            var k = Math.floor(Math.random() * (j + 1));
+            var tmp = out[j];
+            out[j] = out[k];
+            out[k] = tmp;
         }
+
         return out;
     }
 
