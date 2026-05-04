@@ -141,3 +141,53 @@
 .recaptcha-verify-btn:hover {
     background: #3367d6;
 }
+
+/* ===== RESPONSIVE — Image CAPTCHA ===== */
+@media (max-width: 768px) {
+    .recaptcha-header {
+        padding: 14px 12px;
+    }
+
+    .recaptcha-target {
+        font-size: 1.3rem;
+    }
+
+    .recaptcha-footer {
+        padding: 8px 10px;
+    }
+
+    .recaptcha-skip-btn,
+    .recaptcha-verify-btn {
+        padding: 7px 14px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .recaptcha-header {
+        padding: 12px 10px;
+    }
+
+    .recaptcha-task {
+        font-size: 0.78rem;
+    }
+
+    .recaptcha-target {
+        font-size: 1.1rem;
+    }
+
+    .recaptcha-hint {
+        font-size: 0.68rem;
+    }
+
+    .image-grid {
+        gap: 2px;
+        padding: 2px;
+    }
+
+    .image-tile.selected::after {
+        width: 20px;
+        height: 20px;
+        font-size: 0.6rem;
+    }
+}
