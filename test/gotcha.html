@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game CAPTCHA Test - CAPTCHA Research</title>
+    <title>GotCHA CAPTCHA Test - CAPTCHA Research</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/captcha-common.css">
-    <link rel="stylesheet" href="../css/captcha-game.css">
+    <link rel="stylesheet" href="../css/captcha-gotcha.css">
 </head>
 
 <body>
@@ -32,9 +32,8 @@
     <section class="test-page-header">
         <div class="container">
             <a href="../testing.html" class="back-link">← Back to Testing Hub</a>
-            <h1>🎮 Game CAPTCHA Test</h1>
-            <p>Solve the puzzle by dragging pieces to correct positions. Click a piece to rotate it. This is the hardest
-                challenge!</p>
+            <h1>🎯 GotCHA CAPTCHA Test</h1>
+            <p>Find the sketched icons hidden in the image and click them in the correct order shown in the header. A game-based visual challenge!</p>
             <div class="participant-banner" id="participantBanner">
                 Participant: <strong id="participantDisplay">Not set</strong>
             </div>
@@ -43,44 +42,35 @@
 
     <section class="section">
         <div class="container captcha-test-container">
-            <div class="captcha-box game-captcha-box" id="captchaBox">
-                <div class="captcha-box-header game-header">
-                    <span>🎮 Puzzle Verification — Hardest Challenge</span>
+            <div class="captcha-box gotcha-captcha-box" id="captchaBox">
+                <div class="captcha-box-header gotcha-header">
+                    <span>🎯 GotCHA — Sketch-Match Verification</span>
                 </div>
                 <div class="captcha-box-body">
-                    <p class="captcha-instruction" id="gameInstruction">
-                        Memorize the image, then reconstruct it. Drag pieces to the grid. Click a piece to rotate it.
+                    <p class="captcha-instruction" id="gotchaInstruction">
+                        Find the sketched icons in the image and click them in the order shown above.
                     </p>
 
-                    <div class="game-timer-bar">
-                        <div class="game-timer-fill" id="gameTimerFill"></div>
-                    </div>
-                    <p class="game-timer-text" id="gameTimerText">Time: --</p>
+                    <!-- Global SVG pencil filter -->
+                    <svg style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true">
+                        <defs>
+                            <filter id="pencilSketch" x="-10%" y="-10%" width="120%" height="120%">
+                                <feTurbulence type="turbulence" baseFrequency="0.55"
+                                              numOctaves="3" result="noise" seed="42"/>
+                                <feDisplacementMap in="SourceGraphic" in2="noise"
+                                                   scale="2.5"
+                                                   xChannelSelector="R"
+                                                   yChannelSelector="G"/>
+                            </filter>
+                        </defs>
+                    </svg>
 
-                    <div id="previewPhase">
-                        <p class="phase-label">📸 Memorize this image:</p>
-                        <canvas id="previewCanvas" width="270" height="270"></canvas>
-                        <p class="preview-countdown" id="previewCountdown">Starting in 5...</p>
-                    </div>
-
-                    <div id="puzzlePhase" style="display:none;">
-                        <div class="puzzle-area">
-                            <div class="puzzle-board-wrapper">
-                                <p class="phase-label">🧩 Drop pieces here:</p>
-                                <div class="puzzle-board" id="puzzleBoard"></div>
-                            </div>
-                            <div class="puzzle-tray-wrapper">
-                                <p class="phase-label">📦 Pieces (click to rotate):</p>
-                                <div class="puzzle-tray" id="puzzleTray"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="gotchaCaptchaContainer"></div>
 
                     <div class="captcha-button-row">
-                        <button class="cbtn cbtn-reset" id="btnResetGame" onclick="resetGame()">Reset</button>
-                        <button class="cbtn cbtn-new" id="btnNewGame" onclick="newGame()">New Puzzle</button>
-                        <button class="cbtn cbtn-submit" id="btnVerifyGame" onclick="verifyGame()"
-                            disabled>Verify</button>
+                        <button class="cbtn cbtn-reset" id="btnResetGotcha" onclick="resetGotcha()">Reset</button>
+                        <button class="cbtn cbtn-new" id="btnNewGotcha" onclick="newGotchaChallenge()">New Challenge</button>
+                        <button class="cbtn cbtn-submit" id="btnVerifyGotcha" onclick="verifyGotcha()" disabled>Verify</button>
                     </div>
 
                     <div class="captcha-status hidden" id="captchaStatus">
@@ -93,11 +83,6 @@
                 </div>
             </div>
 
-            <!-- <div class="captcha-complete-box" id="completeBox" style="display:none;">
-                <h3>✅ Game CAPTCHA Verified!</h3>
-                <p>Your Game CAPTCHA test data has been recorded successfully.</p>
-                <a href="../testing.html" class="btn btn-primary">← Back to Testing Hub</a>
-            </div> -->
             <div class="captcha-complete-box" id="completeBox" style="display:none;"></div>
         </div>
     </section>
@@ -123,7 +108,7 @@
                     <li><a href="image.html">Image</a></li>
                     <li><a href="audio.html">Audio</a></li>
                     <li><a href="text.html">Text</a></li>
-                    <li><a href="gotcha.html">GotCHA</a></li>
+                    <li><a href="game.html">Game</a></li>
                 </ul>
             </div>
         </div>
@@ -136,7 +121,9 @@
     <script src="../js/session.js"></script>
     <script src="../js/browser-detect.js"></script>
     <script src="../js/logger.js"></script>
-    <script src="../js/captcha-game.js"></script>
+    <script src="../js/gotcha-config.js"></script>
+    <script src="../js/gotcha-icons.js"></script>
+    <script src="../js/captcha-gotcha.js"></script>
 </body>
 
 </html>
