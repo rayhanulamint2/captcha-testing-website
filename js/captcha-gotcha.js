@@ -297,17 +297,24 @@
         if (maxY < pad) maxY = pad;
         var out = [];
         var tries = 0;
+        var minDist = size * 1.8; // center-to-center min distance — prevents any overlap
 
         while (out.length < count && tries < 800) {
             var x = pad + Math.random() * (maxX - pad);
             var y = pad + Math.random() * (maxY - pad);
-            var ok = out.every(function (p) { return Math.hypot(p.x - x, p.y - y) > size + 30; });
+            // Check center-to-center distance (add half-size to convert corner coords to center)
+            var ok = out.every(function (p) {
+                var cx1 = p.x + size / 2, cy1 = p.y + size / 2;
+                var cx2 = x + size / 2, cy2 = y + size / 2;
+                return Math.hypot(cx1 - cx2, cy1 - cy2) > minDist;
+            });
             if (ok) out.push({ x: x, y: y });
             tries++;
         }
 
+        // Fallback: place in a row with guaranteed spacing
         while (out.length < count) {
-            out.push({ x: pad + out.length * (size + 20), y: pad + 20 });
+            out.push({ x: pad + out.length * (size + size * 0.8), y: pad + 20 });
         }
         return out;
     }
