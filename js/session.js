@@ -50,14 +50,13 @@ function getCaptchaLabel(type) {
         image: '🖼️ Image CAPTCHA',
         audio: '🔊 Audio CAPTCHA',
         text:  '🔤 Text CAPTCHA',
-        game:  '🎮 Game CAPTCHA',
         gotcha: '🎯 GotCHA CAPTCHA'
     };
     return labels[type] || type;
 }
 
 function getCaptchaIcon(type) {
-    var icons = { draw: '✏️', image: '🖼️', audio: '🔊', text: '🔤', game: '🎮', gotcha: '🎯' };
+    var icons = { draw: '✏️', image: '🖼️', audio: '🔊', text: '🔤', gotcha: '🎯' };
     return icons[type] || '🧪';
 }
 
@@ -65,7 +64,7 @@ function getCaptchaIcon(type) {
 // NEXT CAPTCHA LOGIC
 // ===================================================
 function getNextCaptcha(currentType) {
-    var types = ['draw', 'image', 'audio', 'text', 'game', 'gotcha'];
+    var types = ['draw', 'image', 'audio', 'text', 'gotcha'];
     var currentIndex = types.indexOf(currentType);
 
     // First try types after current one
@@ -95,10 +94,16 @@ function showCompleteBox(captchaType, captchaDisplayName) {
     if (!completeBox) return;
 
     var completedCount = getCompletedCount();
-    var totalCaptchas = 6;
+    var totalCaptchas = 5;
     var next = getNextCaptcha(captchaType);
 
     var buttonsHtml = '';
+
+    // Always offer a redo button
+    var redoBtn =
+        '<a href="javascript:location.reload()" class="btn btn-outline complete-btn">' +
+            '🔄 Re-perform ' + captchaDisplayName +
+        '</a>';
 
     if (next) {
         // There are more CAPTCHAs to do
@@ -106,11 +111,13 @@ function showCompleteBox(captchaType, captchaDisplayName) {
             '<a href="' + next + '.html" class="btn btn-primary complete-btn">' +
                 getCaptchaIcon(next) + ' Next: ' + getCaptchaLabel(next) + ' →' +
             '</a>' +
+            redoBtn +
             '<a href="../testing.html" class="btn btn-secondary complete-btn">📋 Testing Hub</a>';
     } else {
         // All CAPTCHAs done
         buttonsHtml =
             '<a href="../index.html" class="btn btn-primary complete-btn">🏠 Back to Home</a>' +
+            redoBtn +
             '<a href="../testing.html" class="btn btn-secondary complete-btn">📋 Testing Hub</a>';
     }
 

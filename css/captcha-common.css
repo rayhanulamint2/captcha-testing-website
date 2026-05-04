@@ -2,7 +2,7 @@
 .test-page-header {
     background: linear-gradient(135deg, #4285f4, #356bc4);
     color: #fff;
-    padding: 30px 20px 25px;
+    padding: 24px 20px 20px;
 }
 
 .test-page-header h1 {
@@ -41,6 +41,7 @@
 .captcha-test-container {
     max-width: 500px;
     margin: 0 auto;
+    width: 100%;
 }
 
 /* CAPTCHA BOX */
@@ -50,6 +51,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    width: 100%;
 }
 
 .captcha-box-header {
@@ -61,7 +63,7 @@
 }
 
 .captcha-box-body {
-    padding: 20px;
+    padding: 18px;
     text-align: center;
 }
 
@@ -267,10 +269,143 @@
     font-size: 0.95rem;
 }
 
+.complete-btn.btn-outline {
+    background: transparent;
+    color: #4285f4;
+    border: 2px solid #4285f4;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.complete-btn.btn-outline:hover {
+    background: #4285f4;
+    color: #fff;
+}
+
 @media (max-width: 480px) {
     .complete-btn {
         min-width: 200px;
         font-size: 0.85rem;
         padding: 10px 16px;
+    }
+}
+
+/* ===== RESPONSIVE — fit captcha on screen ===== */
+@media (max-width: 768px) {
+    .test-page-header {
+        padding: 18px 16px 14px;
+    }
+
+    .test-page-header h1 {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+    }
+
+    .test-page-header p {
+        font-size: 0.82rem;
+    }
+
+    .participant-banner {
+        margin-top: 6px;
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+
+    .captcha-test-container .section {
+        padding: 20px 0;
+    }
+
+    .captcha-box-body {
+        padding: 14px;
+    }
+
+    .captcha-instruction {
+        font-size: 0.82rem;
+        margin-bottom: 8px;
+    }
+
+    .captcha-button-row {
+        margin-top: 10px;
+    }
+
+    .cbtn {
+        padding: 8px 0;
+        font-size: 0.78rem;
+    }
+
+    .captcha-status {
+        margin-top: 8px;
+        min-height: 30px;
+        font-size: 0.78rem;
+        padding: 6px 8px;
+    }
+
+    .hint-text {
+        font-size: 0.7rem;
+        margin-top: 5px;
+    }
+
+    .attempts-text {
+        font-size: 0.68rem;
+        margin-top: 4px;
+    }
+
+    .log-indicator {
+        font-size: 0.64rem;
+    }
+
+    .captcha-complete-box {
+        padding: 20px;
+        margin-top: 14px;
+    }
+
+    .captcha-complete-box h3 {
+        font-size: 1.1rem;
+    }
+
+    .captcha-complete-box p {
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .test-page-header {
+        padding: 14px 12px 10px;
+    }
+
+    .test-page-header h1 {
+        font-size: 1.15rem;
+    }
+
+    .test-page-header p {
+        font-size: 0.78rem;
+        line-height: 1.4;
+    }
+
+    .back-link {
+        font-size: 0.78rem;
+        margin-bottom: 4px;
+    }
+
+    .captcha-box-header {
+        padding: 10px 14px;
+        font-size: 0.82rem;
+    }
+
+    .captcha-box-body {
+        padding: 12px 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .test-page-header h1 {
+        font-size: 1.05rem;
+    }
+
+    .captcha-box-body {
+        padding: 10px 8px;
     }
 }

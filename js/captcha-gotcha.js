@@ -1,7 +1,7 @@
 // ===================================================
 // GOTCHA CAPTCHA — Sketch-Match Icon Selection
-// Adapted from game-based captcha for testing website
-// Logs data to the SAME Google Sheet as Game CAPTCHA
+// Visual search CAPTCHA for testing website
+// Logs data to Google Sheet as captchaType 'gotcha'
 // ===================================================
 (function () {
 
@@ -44,6 +44,27 @@
         canvasH: 300,
         maxAttempts: 5
     };
+
+    // ==================== RESPONSIVE SIZING ====================
+    function updateResponsiveSizes() {
+        var containerEl = container || document.getElementById('gotchaCaptchaContainer');
+        var parentEl = containerEl ? containerEl.closest('.captcha-box-body') || containerEl.parentElement : null;
+        var availW = parentEl ? parentEl.clientWidth - 4 : 456; // subtract border/padding
+        if (availW < 100) availW = 456; // fallback for not-yet-rendered
+
+        // Cap max at 456, scale down on smaller screens
+        opts.canvasW = Math.min(456, availW);
+        opts.canvasH = Math.round(opts.canvasW * 0.658); // maintain ~456:300 aspect ratio
+
+        // Scale icon size on smaller screens
+        if (opts.canvasW <= 300) {
+            opts.sketchSize = 48;
+        } else if (opts.canvasW <= 380) {
+            opts.sketchSize = 56;
+        } else {
+            opts.sketchSize = 68;
+        }
+    }
 
     // ==================== DOM REFS ====================
     var container = document.getElementById('gotchaCaptchaContainer');
@@ -104,7 +125,8 @@
 
         // Scene
         scene = _el('div', 'captcha-scene');
-        scene.style.height = opts.canvasH + 'px';
+        scene.style.width = '100%';
+        scene.style.aspectRatio = '456 / 300';
 
         // Show loading while images preload
         var loader = _el('div', 'captcha-loading');
@@ -146,6 +168,13 @@
         btnRefresh.style.display = '';
         startTime = Date.now();
         hideCaptchaStatus();
+
+        // Recalculate responsive sizes before laying out
+        updateResponsiveSizes();
+
+        // Update scene dimensions
+        scene.style.width = '100%';
+        scene.style.height = opts.canvasH + 'px';
 
         // Clean scene
         scene.innerHTML = '';
@@ -260,22 +289,25 @@
 
     // ==================== POSITIONS ====================
     function getPositions(count, size) {
-        var pad = 20;
+        var pad = 60; // large padding to keep icons away from corners/edges
         var maxX = opts.canvasW - size - pad;
         var maxY = opts.canvasH - size - pad;
+        // Clamp to avoid negative ranges on very small screens
+        if (maxX < pad) maxX = pad;
+        if (maxY < pad) maxY = pad;
         var out = [];
         var tries = 0;
 
         while (out.length < count && tries < 800) {
-            var x = pad + Math.random() * maxX;
-            var y = pad + Math.random() * maxY;
+            var x = pad + Math.random() * (maxX - pad);
+            var y = pad + Math.random() * (maxY - pad);
             var ok = out.every(function (p) { return Math.hypot(p.x - x, p.y - y) > size + 30; });
             if (ok) out.push({ x: x, y: y });
             tries++;
         }
 
         while (out.length < count) {
-            out.push({ x: pad + out.length * (size + 40), y: pad + 50 });
+            out.push({ x: pad + out.length * (size + 20), y: pad + 20 });
         }
         return out;
     }
@@ -334,9 +366,9 @@
             showCaptchaStatus('pass', '✅', 'GotCHA verified! Icons selected in correct order.');
             hintText.textContent = 'Verification successful!';
 
-            // Log to the same Google Sheet as game captcha — same captchaType
+            // Log to Google Sheet
             logToSheet({
-                captchaType: 'game',
+                captchaType: 'gotcha',
                 attemptNumber: attempts,
                 result: 'pass',
                 accuracy: 100,
@@ -369,9 +401,9 @@
             showCaptchaStatus('fail', '❌', correctCount + '/' + answer.length + ' in correct position. Wrong order — try again.');
             hintText.textContent = 'Look carefully at the order numbers in the header.';
 
-            // Log fail to same sheet — same captchaType as game
+            // Log fail to sheet
             logToSheet({
-                captchaType: 'game',
+                captchaType: 'gotcha',
                 attemptNumber: attempts,
                 result: 'fail',
                 accuracy: accuracy,
@@ -438,10 +470,22 @@
     };
 
     // ==================== INIT ====================
+    updateResponsiveSizes();
     buildWidget();
     preloadImages();
 
     if (attemptsText) attemptsText.textContent = 'Attempt 0 / ' + maxAttempts;
+
+    // Recalculate on resize
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            if (!verified && imagesLoaded) {
+                newChallenge();
+            }
+        }, 300);
+    });
 
     console.log('✅ captcha-gotcha.js loaded');
 

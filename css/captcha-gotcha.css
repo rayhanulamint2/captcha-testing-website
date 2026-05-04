@@ -1,6 +1,7 @@
 /* =============== GOTCHA CAPTCHA — Sketch-Match Widget =============== */
 .gotcha-captcha-box {
     max-width: 520px;
+    width: 100%;
 }
 
 .gotcha-header {
@@ -269,4 +270,92 @@
 @keyframes gotchaFadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+/* ===== RESPONSIVE — Gotcha widget ===== */
+@media (max-width: 768px) {
+    .gotcha-captcha-box {
+        max-width: 100%;
+    }
+
+    .captcha-header {
+        padding: 10px 12px;
+        gap: 6px;
+    }
+
+    .instruction-text {
+        font-size: 12px;
+    }
+
+    .order-icon-slot {
+        width: 36px;
+        height: 36px;
+        padding: 5px;
+    }
+
+    .order-badge {
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+        top: -5px;
+        left: -5px;
+    }
+
+    .captcha-footer {
+        padding: 10px 12px;
+    }
+
+    .captcha-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .btn-refresh {
+        width: 44px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .captcha-header {
+        padding: 8px 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .instruction-text {
+        font-size: 11px;
+    }
+
+    .order-icon-slot {
+        width: 32px;
+        height: 32px;
+        padding: 4px;
+    }
+
+    .order-badge {
+        width: 14px;
+        height: 14px;
+        font-size: 8px;
+        top: -4px;
+        left: -4px;
+    }
+
+    .captcha-footer {
+        padding: 8px 10px;
+    }
+
+    .captcha-btn {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .btn-refresh {
+        width: 38px;
+        font-size: 16px;
+    }
+
+    .sketch-icon {
+        /* JS will handle size dynamically */
+    }
 }

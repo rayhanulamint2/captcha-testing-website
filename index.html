@@ -34,7 +34,7 @@
             <h1>Evaluating CAPTCHA Systems for <span class="highlight">Usability &amp; Security</span></h1>
             <p class="hero-subtitle">
                 A comparative research study analyzing five different CAPTCHA types — 
-                from traditional text and image challenges to our novel DrawCAPTCHA approach. 
+                from traditional text and image challenges to behavioral DrawCAPTCHA and visual search-based GotCHA. 
                 Help us understand which CAPTCHA best balances human usability with bot prevention.
             </p>
             <div class="hero-buttons">
@@ -68,8 +68,8 @@
                 <div class="captcha-card">
                     <div class="card-icon">✏️</div>
                     <h3>DrawCAPTCHA</h3>
-                    <span class="card-badge novel">Novel</span>
-                    <p>Our custom CAPTCHA — trace a guided path on a canvas. Uses 16 behavioral anti-bot checks including jitter analysis, velocity variance, and timing patterns.</p>
+                    <span class="card-badge experimental">Behavioral</span>
+                    <p>Trace a guided path on a canvas. A behavioral CAPTCHA that uses 16 anti-bot checks including jitter analysis, velocity variance, and timing patterns.</p>
                     <ul class="card-features">
                         <li>Canvas-based path tracing</li>
                         <li>25 unique path shapes</li>
@@ -110,14 +110,14 @@
                     </ul>
                 </div>
                 <div class="captcha-card">
-                    <div class="card-icon">🎮</div>
-                    <h3>Game CAPTCHA</h3>
-                    <span class="card-badge experimental">Experimental</span>
-                    <p>An interactive puzzle challenge — rotate and place puzzle pieces correctly. The hardest CAPTCHA in our study, testing spatial reasoning.</p>
+                    <div class="card-icon">🎯</div>
+                    <h3>GotCHA CAPTCHA</h3>
+                    <span class="card-badge novel">Novel</span>
+                    <p>Find sketched icons hidden within a real-world image and click them in the correct order. A visual search challenge testing pattern recognition.</p>
                     <ul class="card-features">
-                        <li>Drag-and-drop puzzle</li>
-                        <li>Rotation mechanics</li>
-                        <li>Spatial reasoning test</li>
+                        <li>Sketch-match icon search</li>
+                        <li>Sequential order selection</li>
+                        <li>Visual pattern recognition</li>
                     </ul>
                 </div>
             </div>
@@ -188,7 +188,7 @@
                     <li><a href="test/image.html">Image CAPTCHA</a></li>
                     <li><a href="test/audio.html">Audio CAPTCHA</a></li>
                     <li><a href="test/text.html">Text CAPTCHA</a></li>
-                    <li><a href="test/game.html">Game CAPTCHA</a></li>
+                    <li><a href="test/gotcha.html">GotCHA CAPTCHA</a></li>
                 </ul>
             </div>
             <div class="footer-col">
